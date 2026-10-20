@@ -45,15 +45,12 @@ public final class AresafioGuiMod implements ModInitializer {
 
         MutableText header = Text.literal("\n\n\n\n")
             .append(logo)
-            .append(Text.literal("\n\n\n\n\n\n\n"))
-            .append(Text.literal("ARESAFIO 4").formatted(Formatting.GOLD, Formatting.BOLD));
+            .append(Text.literal("\n\n\n\n\n\n\n"));
 
         long day = (server.getOverworld().getTimeOfDay() / 24000L) + 1L;
-        int players = server.getPlayerManager().getPlayerList().size();
-        int max = server.getPlayerManager().getMaxPlayerCount();
-        MutableText footer = Text.literal("Día " + day).formatted(Formatting.WHITE)
-            .append(Text.literal("   •   ").formatted(Formatting.DARK_GRAY))
-            .append(Text.literal(players + "/" + max + " jugadores").formatted(Formatting.GRAY));
+        MutableText footer = Text.literal("Día " + day)
+            .setStyle(Style.EMPTY.withFont(Identifier.ofVanilla("default")))
+            .formatted(Formatting.WHITE);
 
         player.networkHandler.sendPacket(new PlayerListHeaderS2CPacket(header, footer));
     }

@@ -1,0 +1,13 @@
+{
+  "chat": {
+    "translation_key": "%s <%s> %s",
+    "parameters": ["target", "sender", "content"],
+    "style": {
+      "font": "minecraft:default"
+    }
+  },
+  "narration": {
+    "translation_key": "chat.type.text.narrate",
+    "parameters": ["sender", "content"]
+  }
+}
