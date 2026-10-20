@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "aresafio_gui",
+  "version": "${version}",
+  "name": "ARESAFIO GUI (servidor)",
+  "description": "TAB con logo ARESAFIO y ruleta en el nombre del remitente de chat firmado",
+  "authors": [
+    "PE Studios"
+  ],
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "pe.studios.aresafio.AresafioGuiMod"
+    ]
+  },
+  "mixins": [
+    "aresafio_gui.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

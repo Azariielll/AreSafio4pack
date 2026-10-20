@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "pe.studios.aresafio.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerManagerChatMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
