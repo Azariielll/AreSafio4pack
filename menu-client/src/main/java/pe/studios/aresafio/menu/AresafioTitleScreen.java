@@ -9,7 +9,6 @@ import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.screen.world.SelectWorldScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 public final class AresafioTitleScreen extends Screen {
     public AresafioTitleScreen() { super(Text.literal("ARESAFIO 4")); }
@@ -48,9 +47,8 @@ public final class AresafioTitleScreen extends Screen {
         double ratio = Math.min(box.width() / (double) sprite.sourceWidth(), box.height() / (double) sprite.sourceHeight());
         int w = Math.max(1, (int) Math.round(sprite.sourceWidth() * ratio));
         int h = Math.max(1, (int) Math.round(sprite.sourceHeight() * ratio));
-        context.drawTexture(Identifier.of(sprite.texture()), box.x() + (box.width() - w) / 2,
-                            box.y() + (box.height() - h) / 2, w, h, (float) sprite.u(), (float) sprite.v(),
-                            sprite.sourceWidth(), sprite.sourceHeight(), sprite.textureWidth(), sprite.textureHeight());
+        MenuSprites.draw(context, sprite, box.x() + (box.width() - w) / 2,
+                         box.y() + (box.height() - h) / 2, w, h, 1f);
         super.render(context, mouseX, mouseY, delta);
     }
 

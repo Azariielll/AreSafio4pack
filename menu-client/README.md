@@ -1,23 +1,29 @@
-# ARESAFIO — Menús beta para Minecraft Java 1.21.1
+# ARESAFIO — Menús beta 2 para Minecraft Java 1.21.1
 
 Esta ampliación es un módulo **de cliente** separado. El JAR de servidor, la ruleta del chat, sus mensajes firmados y el TAB conservan sus archivos y comportamiento. El pack V1 del servidor permanece intacto.
 
-## Instalar la beta
+## Instalar o actualizar a beta 2
 
 1. Usa Minecraft **Java 1.21.1**, Java 21 y Fabric Loader 0.16.14 o compatible.
 2. Instala Fabric API para 1.21.1 en el **cliente**.
-3. Copia `menu-client/build/libs/aresafio-menu-client-1.0.0-beta.1.jar` a la carpeta `mods/` de tu instalación de Minecraft. Este JAR no se instala en el servidor.
-4. Copia `ARESAFIO_GUI_MenuBeta_ResourcePack.zip` a `resourcepacks/` y actívalo desde Opciones → Paquetes de recursos. Ponlo por encima de otros packs que cambien menús.
+3. Cierra Minecraft y retira `aresafio-menu-client-1.0.0-beta.1.jar` de `mods/` del **cliente**. Copia allí `menu-client/build/libs/aresafio-menu-client-1.0.0-beta.2.jar`. Deja una sola versión del módulo de menús: no cargues beta 1 y beta 2 juntas. Este JAR no se instala en el servidor.
+4. Sustituye el ZIP anterior de `resourcepacks/` por el nuevo `ARESAFIO_GUI_MenuBeta_ResourcePack.zip`, sin descomprimirlo, y actívalo desde Opciones → Paquetes de recursos. Si conservaste otra copia con un nombre distinto, desactiva esa copia anterior. Pon la nueva copia por encima de otros packs que cambien menús.
 5. Regresa al inicio. Si el pack no está activo o está incompleto, el módulo conserva el menú vanilla.
 
 El servidor sigue usando `aresafio-gui-server-1.0.0.jar` y `ARESAFIO_GUI_V1_ResourcePack.zip`. Sus clientes no necesitan esta beta para que funcionen chat y TAB. El menú no se puede cambiar antes de conectarse con un pack descargado únicamente del servidor.
+
+## Corrección de calidad de beta 2
+
+La beta 1 dibujaba las imágenes sin activar correctamente la mezcla alfa. Los píxeles casi transparentes del PNG original aparecían como manchas negras y bordes sucios. La beta 2 corrige esa mezcla en el renderizador y conserva el logo ARESAFIO original, incluido PE STUDIOS; no usa un logo regenerado.
+
+Los mipmaps suavizan el logo y los botones al reducirlos al tamaño de pantalla, para evitar el dentado de una textura grande dibujada muy pequeña. El vídeo conserva ahora sus 1920×1024 píxeles originales y 30 fotogramas/s, con JPEG 4:4:4 para reducir la pérdida de detalle y color de la conversión anterior. Estas correcciones no cambian las posiciones, las zonas de clic ni la distribución aprobada.
 
 ## Qué incluye
 
 - Cuatro botones en el inicio: **Jugar**, **Multijugador**, **Opciones** y **Salir**, con los PNG originales suministrados. Usan las pantallas y acciones de Minecraft, incluidos sus avisos y restricciones de multijugador.
 - Logo ARESAFIO original, incluido PE STUDIOS, conservando sus proporciones. Está centrado en la zona del logo de la referencia; su silueta y proporciones son las de ARESAFIO, no las del logotipo Dedsafio.
 - Columna del inicio centrada en X=504 de la referencia de 1919×904. Las cuatro filas se sitúan a Y=540,620,700,780 (cajas de 50 px) para incorporar el cuarto botón solicitado. La referencia tenía tres filas, por lo que no puede mantener simultáneamente las tres separaciones originales y añadir una cuarta.
-- Vídeo original en bucle de doce segundos, adaptado a 1280×682 y 30 fotogramas/s. Solo se decodifica un fotograma por adelantado, fuera del hilo de dibujo. El fondo cubre la ventana sin deformarse, con recorte según la relación de aspecto.
+- Vídeo original en bucle de doce segundos, conservado a su resolución original de 1920×1024 y 30 fotogramas/s, con JPEG 4:4:4. Solo se decodifica un fotograma por adelantado, fuera del hilo de dibujo. El fondo cubre la ventana sin deformarse, con recorte según la relación de aspecto.
 - Música original convertida de MP3 a OGG Vorbis, en streaming y en bucle; respeta el volumen de música de Minecraft y se detiene al volver al juego. No se mezclan dos pistas de música de menú.
 - Fondo y estilo de botones en las pantallas de menú fuera del mundo; también en pausa, opciones y sus subpantallas, paquetes, estadísticas y avances. Las demás pantallas conservan sus posiciones y acciones vanilla. Las listas, deslizadores, campos e iconos especializados mantienen sus controles originales.
 - Inventarios, HUD, chat, nombres, cabezas, indicadores de conexión y texturas de juego no se modifican.
@@ -50,11 +56,17 @@ gradle build
 
 Esto compila servidor y cliente y ejecuta `:menu-client:verifyMenuLayout`, que comprueba cuatro acciones y zonas de clic en siete resoluciones/escalas. No requiere JUnit ni dependencias nuevas. GitHub Actions conserva el artefacto de servidor y publica por separado el JAR de cliente y el pack beta.
 
-Para obtener un ZIP instalable con las carpetas `mods/` y `resourcepacks/`, ejecuta `gradle :menu-client:betaDistribution`. El resultado está en `build/distributions/ARESAFIO_MenuBeta_1.21.1.zip`.
+Para obtener un ZIP instalable con las carpetas `mods/` y `resourcepacks/`, ejecuta `gradle :menu-client:betaDistribution`. El resultado está en `build/distributions/ARESAFIO_MenuBeta2_1.21.1.zip`.
 
 La prueba de geometría y la validación del pack no sustituyen la comprobación en Minecraft: revisar inicio, multijugador, mundos, opciones/subpantallas, pausa, carga de packs, escalas de interfaz, navegación con teclado, música y vuelta al juego. También hay que comprobar en un servidor real que chat y TAB siguen funcionando.
 
-## Verificación de esta beta
+## Verificación de beta 2
+
+`gradle build :menu-client:betaDistribution` completado correctamente. La prueba automatizada confirma que el logo y los botones conservan exactamente la geometría aprobada, además de comprobar siete resoluciones/escalas. El pack pasó las comprobaciones de CRC, SHA-1, JSON, 360 fotogramas, audio y coincidencia de todos los PNG originales y recursos V1.
+
+Prueba realizada con un cliente real de Minecraft Java 1.21.1 en pantalla virtual Xvfb/Mesa: vídeo decodificado a 1920×1024 y comprobación de filtros trilineales de OpenGL y mipmaps en el logo y los cuatro botones. Se capturó el menú a 1919×904, 1920×1080 y 1280×720, se comprobó el clic de Opciones y se desactivó/reactivó el pack. La inspección de las seis capturas muestra el logo sin las manchas negras y los textos con bordes limpios. Las capturas y el análisis de alfa están en `menu-client/build/quality-validation/` como salidas locales, fuera del JAR. No se ha probado un servidor remoto ni escuchado la música en un dispositivo físico. Los resultados históricos de beta 1 que aparecen debajo corresponden únicamente a esa revisión.
+
+## Histórico: verificación de beta 1
 
 - `gradle build :menu-client:betaDistribution`: compilación y distribución correctas.
 - Pack: CRC, SHA-1, JSON, 360 fotogramas y audio presentes; los PNG suministrados y todos los recursos de chat/TAB del pack V1 permanecen idénticos.

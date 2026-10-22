@@ -1,0 +1,87 @@
+{
+  "referenceWidth": 1919,
+  "referenceHeight": 904,
+  "logo": {
+    "texture": "aresafio_menu:textures/menu/logo.png",
+    "textureWidth": 1254,
+    "textureHeight": 1254,
+    "u": 0,
+    "v": 0,
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "x": 104,
+    "y": 0,
+    "width": 800,
+    "height": 530
+  },
+  "buttons": [
+    {
+      "action": "singleplayer",
+      "label": "Jugar",
+      "sprite": {
+        "texture": "aresafio_menu:textures/menu/singleplayer.png",
+        "textureWidth": 2172,
+        "textureHeight": 724,
+        "u": 133,
+        "v": 232,
+        "sourceWidth": 1900,
+        "sourceHeight": 239,
+        "x": 429.0,
+        "y": 540,
+        "width": 150,
+        "height": 50
+      }
+    },
+    {
+      "action": "multiplayer",
+      "label": "Multijugador",
+      "sprite": {
+        "texture": "aresafio_menu:textures/menu/multiplayer.png",
+        "textureWidth": 2171,
+        "textureHeight": 724,
+        "u": 71,
+        "v": 275,
+        "sourceWidth": 2019,
+        "sourceHeight": 167,
+        "x": 369.0,
+        "y": 620,
+        "width": 270,
+        "height": 50
+      }
+    },
+    {
+      "action": "options",
+      "label": "Opciones",
+      "sprite": {
+        "texture": "aresafio_menu:textures/menu/options.png",
+        "textureWidth": 2167,
+        "textureHeight": 726,
+        "u": 142,
+        "v": 256,
+        "sourceWidth": 1883,
+        "sourceHeight": 162,
+        "x": 391.5,
+        "y": 700,
+        "width": 225,
+        "height": 50
+      }
+    },
+    {
+      "action": "quit",
+      "label": "Salir",
+      "sprite": {
+        "texture": "aresafio_menu:textures/menu/quit.png",
+        "textureWidth": 2172,
+        "textureHeight": 724,
+        "u": 160,
+        "v": 219,
+        "sourceWidth": 1849,
+        "sourceHeight": 250,
+        "x": 436.5,
+        "y": 780,
+        "width": 135,
+        "height": 50
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@ plugins {
     id 'fabric-loom'
 }
 
-version = '1.0.0-beta.1'
+version = '1.0.0-beta.2'
 group = rootProject.maven_group
 base { archivesName = 'aresafio-menu-client' }
 
@@ -39,7 +39,7 @@ check.dependsOn verifyMenuLayout
 
 tasks.register('betaDistribution', Zip) {
     dependsOn remapJar, verifyMenuLayout
-    archiveFileName = 'ARESAFIO_MenuBeta_1.21.1.zip'
+    archiveFileName = 'ARESAFIO_MenuBeta2_1.21.1.zip'
     destinationDirectory = rootProject.layout.buildDirectory.dir('distributions')
     from(tasks.named('remapJar').flatMap { it.archiveFile }) { into 'mods' }
     from(rootProject.file('ARESAFIO_GUI_MenuBeta_ResourcePack.zip')) { into 'resourcepacks' }

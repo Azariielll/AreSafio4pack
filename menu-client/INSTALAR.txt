@@ -1,15 +1,23 @@
-ARESAFIO — MENU BETA — MINECRAFT JAVA 1.21.1
+ARESAFIO — MENU BETA 2 — MINECRAFT JAVA 1.21.1
 
 CLIENTE: Java 21 + Fabric Loader 0.16.14 o compatible + Fabric API para 1.21.1.
 
-1. Copia el JAR incluido en mods/ a la carpeta mods/ de TU CLIENTE Minecraft.
-2. Copia el ZIP de resourcepacks/ a resourcepacks/ de TU CLIENTE.
-3. En Minecraft: Opciones -> Paquetes de recursos -> activa ARESAFIO GUI MenuBeta.
-4. Regresa al inicio. Aparecen Jugar, Multijugador, Opciones y Salir.
+1. Cierra Minecraft. En mods/ de TU CLIENTE, retira aresafio-menu-client-1.0.0-beta.1.jar.
+2. Copia el nuevo aresafio-menu-client-1.0.0-beta.2.jar a mods/ del cliente.
+   Deja una sola version del modulo de menus; no cargues beta 1 y beta 2 juntas.
+3. Sustituye el ZIP anterior de resourcepacks/ por el nuevo
+   ARESAFIO_GUI_MenuBeta_ResourcePack.zip. Deja este ZIP comprimido.
+4. En Minecraft: Opciones -> Paquetes de recursos -> activa la nueva copia del pack.
+   Si conservaste otra copia con un nombre diferente, desactiva esa copia anterior.
+5. Regresa al inicio. Se conservan las posiciones de Jugar, Multijugador, Opciones y Salir.
 
 El JAR de menú es solo de cliente. No reemplaza el JAR de servidor.
 El servidor sigue utilizando el mod ARESAFIO GUI y el pack V1 originales.
 El pack local beta incluye las fuentes y texturas originales de chat/TAB sin alterarlas.
+
+La beta 2 corrige la transparencia del logo y los botones mediante mezcla alfa,
+suaviza su reduccion con mipmaps y conserva el video a 1920x1024, 30 fps y JPEG 4:4:4.
+El logo original no se ha regenerado y las posiciones aprobadas no se cambian.
 
 Para volver a la interfaz vanilla, desactiva el pack beta o retira el JAR del cliente.
 Para futuros ajustes, las posiciones están en assets/aresafio_menu/menu.json dentro del pack.
