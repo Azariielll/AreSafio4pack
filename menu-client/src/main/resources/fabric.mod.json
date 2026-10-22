@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "aresafio_menu_client",
+  "version": "${version}",
+  "name": "ARESAFIO — Menús beta",
+  "description": "Menús de cliente con los recursos originales de ARESAFIO. Requiere el pack local MenuBeta.",
+  "authors": ["PE Studios"],
+  "environment": "client",
+  "entrypoints": {
+    "client": ["pe.studios.aresafio.menu.AresafioMenuClient"]
+  },
+  "mixins": ["aresafio_menu.client.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

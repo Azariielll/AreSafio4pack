@@ -1,0 +1,15 @@
+ARESAFIO — MENU BETA — MINECRAFT JAVA 1.21.1
+
+CLIENTE: Java 21 + Fabric Loader 0.16.14 o compatible + Fabric API para 1.21.1.
+
+1. Copia el JAR incluido en mods/ a la carpeta mods/ de TU CLIENTE Minecraft.
+2. Copia el ZIP de resourcepacks/ a resourcepacks/ de TU CLIENTE.
+3. En Minecraft: Opciones -> Paquetes de recursos -> activa ARESAFIO GUI MenuBeta.
+4. Regresa al inicio. Aparecen Jugar, Multijugador, Opciones y Salir.
+
+El JAR de menú es solo de cliente. No reemplaza el JAR de servidor.
+El servidor sigue utilizando el mod ARESAFIO GUI y el pack V1 originales.
+El pack local beta incluye las fuentes y texturas originales de chat/TAB sin alterarlas.
+
+Para volver a la interfaz vanilla, desactiva el pack beta o retira el JAR del cliente.
+Para futuros ajustes, las posiciones están en assets/aresafio_menu/menu.json dentro del pack.

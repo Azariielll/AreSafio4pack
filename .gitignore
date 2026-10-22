@@ -1,0 +1,7 @@
+.gradle/
+build/
+**/.gradle/
+**/build/
+run/
+menu-client/run/
+__pycache__/
