@@ -1,11 +1,13 @@
 # ARESAFIO GUI — V1 (Fabric 1.21.1)
 
+La beta opcional de menús tiene un [módulo de cliente independiente](menu-client/README.md) y un pack local `ARESAFIO_GUI_MenuBeta_ResourcePack.zip`. No cambia la arquitectura ni la instalación del mod de servidor descrito aquí.
+
 Esta versión está diseñada para **servidor**: no es un mod visual de cliente.
 Necesita también el ZIP del **Resource Pack**.
 
 ## Funcionalidades
-- Al pulsar TAB: logo suministrado por PE Studios como encabezado, título ARESAFIO 4, y contador de día/máximo jugadores.
-- En chat normal: ruleta antes del nombre de quien escribe, SIN cambiar el contenido firmado del mensaje.
+- Al pulsar TAB: logo original suministrado por PE Studios y contador dinámico `Día X`, sin título de texto adicional ni contador de jugadores.
+- En chat normal: `[RULETA] <NombreJugador> mensaje`, con la fuente personalizada solo en la ruleta y tipografía vanilla en el nombre, SIN cambiar el contenido firmado del mensaje.
 - No cambia etiquetas sobre jugadores ni usa teams del scoreboard.
 - Sin mods adicionales instalados en los clientes (sí se debe aceptar el pack).
 
@@ -45,4 +47,4 @@ require-resource-pack=true
 Los PNG originales aportados por el usuario están en `recursos-originales/`. Los PNG procesados están en el ZIP del Resource Pack. No se utiliza una imagen de fondo inventada.
 
 ## Estado de pruebas
-Validado el contenido y estructura del Resource Pack (JSON, PNG, compresión, SHA-1), pero **no se pudo compilar ni ejecutar el mod** en este entorno sin acceso a los repositorios de Fabric/Gradle. Es un proyecto fuente pendiente de compilación y prueba en servidor.
+Compilación verificada con Java 21 y Gradle 8.12. Validado el Resource Pack V1 (JSON, PNG, compresión y SHA-1) y comprobados bajo Fabric 1.21.1 el formato del chat, las fuentes de sus componentes y la carga del mixin. La prueba de chat firmado entre jugadores y la comprobación visual del TAB en un servidor real siguen pendientes. Las comprobaciones de la beta de menús se documentan por separado en `menu-client/README.md`.

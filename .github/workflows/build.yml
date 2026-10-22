@@ -26,10 +26,24 @@ jobs:
           gradle-version: '8.12'
 
       - name: Compilar mod Fabric
-        run: gradle build --no-daemon
+        run: gradle build :menu-client:betaDistribution --no-daemon
 
       - name: Guardar archivo JAR
         uses: actions/upload-artifact@v4
         with:
           name: ARESAFIO-GUI-V1
           path: build/libs/*.jar
+
+      - name: Verificar el pack beta sin reconstruir sus recursos
+        run: python3 tools/build_menu_pack.py --check
+
+      - name: Guardar cliente y pack de menús beta
+        uses: actions/upload-artifact@v4
+        with:
+          name: ARESAFIO-MenuBeta-Cliente
+          path: |
+            menu-client/build/libs/*.jar
+            ARESAFIO_GUI_MenuBeta_ResourcePack.zip
+            RESOURCE_PACK_MENU_BETA_SHA1.txt
+            menu-client/README.md
+            build/distributions/ARESAFIO_MenuBeta_1.21.1.zip
