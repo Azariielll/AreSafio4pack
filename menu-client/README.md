@@ -1,40 +1,35 @@
-# ARESAFIO — Menús beta 2 para Minecraft Java 1.21.1
+# ARESAFIO — Menú principal beta 3 para Minecraft Java 1.21.1
 
-Esta ampliación es un módulo **de cliente** separado. El JAR de servidor, la ruleta del chat, sus mensajes firmados y el TAB conservan sus archivos y comportamiento. El pack V1 del servidor permanece intacto.
+Esta ampliación es un módulo **de cliente** separado y personaliza únicamente el menú principal. Opciones y sus subpantallas, Multijugador, selección de mundos, pausa y las demás interfaces conservan el aspecto y el comportamiento vanilla. El JAR de servidor, la ruleta del chat, sus mensajes firmados, el TAB y el pack V1 del servidor permanecen intactos.
 
-## Instalar o actualizar a beta 2
+## Instalar o actualizar a beta 3
 
 1. Usa Minecraft **Java 1.21.1**, Java 21 y Fabric Loader 0.16.14 o compatible.
 2. Instala Fabric API para 1.21.1 en el **cliente**.
-3. Cierra Minecraft y retira `aresafio-menu-client-1.0.0-beta.1.jar` de `mods/` del **cliente**. Copia allí `menu-client/build/libs/aresafio-menu-client-1.0.0-beta.2.jar`. Deja una sola versión del módulo de menús: no cargues beta 1 y beta 2 juntas. Este JAR no se instala en el servidor.
-4. Sustituye el ZIP anterior de `resourcepacks/` por el nuevo `ARESAFIO_GUI_MenuBeta_ResourcePack.zip`, sin descomprimirlo, y actívalo desde Opciones → Paquetes de recursos. Si conservaste otra copia con un nombre distinto, desactiva esa copia anterior. Pon la nueva copia por encima de otros packs que cambien menús.
+3. Cierra Minecraft. Retira de `mods/` del cliente tanto `aresafio-menu-client-1.0.0-beta.1.jar` como `aresafio-menu-client-1.0.0-beta.2.jar`, si están presentes. Copia allí `menu-client/build/libs/aresafio-menu-client-1.0.0-beta.3.jar`. Conserva una sola versión del módulo. Este JAR no se instala en el servidor.
+4. Sustituye el ZIP anterior de `resourcepacks/` por el nuevo `ARESAFIO_GUI_MenuBeta_ResourcePack.zip`, sin descomprimirlo, y actívalo desde Opciones → Paquetes de recursos. Si conservaste otra copia con un nombre distinto, desactívala.
 5. Regresa al inicio. Si el pack no está activo o está incompleto, el módulo conserva el menú vanilla.
 
-El servidor sigue usando `aresafio-gui-server-1.0.0.jar` y `ARESAFIO_GUI_V1_ResourcePack.zip`. Sus clientes no necesitan esta beta para que funcionen chat y TAB. El menú no se puede cambiar antes de conectarse con un pack descargado únicamente del servidor.
+El ZIP instalable `ARESAFIO_MenuBeta3_1.21.1.zip` incluye las carpetas `mods/`, `resourcepacks/` y las instrucciones. Si descargaste el artefacto completo de GitHub Actions, este ZIP está dentro de `build/distributions/`: extrae primero el ZIP instalable y copia cada archivo a la carpeta correspondiente de tu instancia. El ZIP del resource pack se deja comprimido.
 
-## Corrección de calidad de beta 2
+El servidor sigue usando `aresafio-gui-server-1.0.0.jar` y `ARESAFIO_GUI_V1_ResourcePack.zip`. Sus clientes no necesitan esta beta para que funcionen chat y TAB. Un pack descargado únicamente al conectarse al servidor no puede cambiar el menú principal antes de la conexión.
 
-La beta 1 dibujaba las imágenes sin activar correctamente la mezcla alfa. Los píxeles casi transparentes del PNG original aparecían como manchas negras y bordes sucios. La beta 2 corrige esa mezcla en el renderizador y conserva el logo ARESAFIO original, incluido PE STUDIOS; no usa un logo regenerado.
+## Cambios de beta 3
 
-Los mipmaps suavizan el logo y los botones al reducirlos al tamaño de pantalla, para evitar el dentado de una textura grande dibujada muy pequeña. El vídeo conserva ahora sus 1920×1024 píxeles originales y 30 fotogramas/s, con JPEG 4:4:4 para reducir la pérdida de detalle y color de la conversión anterior. Estas correcciones no cambian las posiciones, las zonas de clic ni la distribución aprobada.
+- Referencia de pantalla de **1920×1080**. El logo ARESAFIO original, incluido PE STUDIOS, mantiene su tamaño de 530×530 píxeles de dibujo y se desplaza 64 píxeles a la izquierda; la columna queda centrada en X=440.
+- Los cuatro botones **Jugar**, **Multijugador**, **Opciones** y **Salir** quedan centrados debajo del logo y se reducen un 10 %. Sus cajas de 45 píxeles de alto comienzan en Y=630,5; 710,5; 790,5 y 870,5. Se conservan los PNG originales, sus proporciones, la mezcla alfa y los mipmaps.
+- El vídeo original de 1920×1024 se adapta completo a 1920×1080 con Lanczos y un enfoque moderado de luminancia de 0,35. No se recortan los laterales, donde aparece PE STUDIOS. Conserva el bucle de doce segundos, 30 fotogramas/s y JPEG 4:4:4 con calidad de conversión `q=4`.
+- Fondo, logo, botones y música personalizados se limitan al inicio. Al abrir otra pantalla se detiene la pista personalizada y vuelve a funcionar el sistema de música vanilla. Opciones, Multijugador, mundos, pausa y las demás pantallas conservan sus fondos, controles y distribución vanilla.
 
-## Qué incluye
+El vídeo suministrado ya está comprimido en H.264 a aproximadamente 3,6 Mbit/s. El ajuste de encuadre y el enfoque mejoran su presentación, pero no recuperan detalle que no exista en el archivo original ni equivalen a una fuente nativa de mayor calidad.
 
-- Cuatro botones en el inicio: **Jugar**, **Multijugador**, **Opciones** y **Salir**, con los PNG originales suministrados. Usan las pantallas y acciones de Minecraft, incluidos sus avisos y restricciones de multijugador.
-- Logo ARESAFIO original, incluido PE STUDIOS, conservando sus proporciones. Está centrado en la zona del logo de la referencia; su silueta y proporciones son las de ARESAFIO, no las del logotipo Dedsafio.
-- Columna del inicio centrada en X=504 de la referencia de 1919×904. Las cuatro filas se sitúan a Y=540,620,700,780 (cajas de 50 px) para incorporar el cuarto botón solicitado. La referencia tenía tres filas, por lo que no puede mantener simultáneamente las tres separaciones originales y añadir una cuarta.
-- Vídeo original en bucle de doce segundos, conservado a su resolución original de 1920×1024 y 30 fotogramas/s, con JPEG 4:4:4. Solo se decodifica un fotograma por adelantado, fuera del hilo de dibujo. El fondo cubre la ventana sin deformarse, con recorte según la relación de aspecto.
-- Música original convertida de MP3 a OGG Vorbis, en streaming y en bucle; respeta el volumen de música de Minecraft y se detiene al volver al juego. No se mezclan dos pistas de música de menú.
-- Fondo y estilo de botones en las pantallas de menú fuera del mundo; también en pausa, opciones y sus subpantallas, paquetes, estadísticas y avances. Las demás pantallas conservan sus posiciones y acciones vanilla. Las listas, deslizadores, campos e iconos especializados mantienen sus controles originales.
-- Inventarios, HUD, chat, nombres, cabezas, indicadores de conexión y texturas de juego no se modifican.
-
-No se copia el arte Dedsafio ni la marca EUFONIA de la captura: la captura es referencia de distribución y los recursos visibles son los aportados para ARESAFIO. El icono X superpuesto en la captura no se incorpora como un control de Minecraft.
+La corrección de transparencia de beta 2 se conserva: los píxeles casi transparentes del logo y los botones se mezclan con el fondo en lugar de aparecer como manchas opacas. No se regenera el logo ni se modifican los PNG originales. El vídeo se decodifica con un solo fotograma por adelantado, fuera del hilo de dibujo; no se guarda el bucle completo en RAM o VRAM.
 
 ## Actualizar los recursos
 
-Los originales están en `menu-assets/originales/menu.zip`; la referencia está en `menu-assets/referencia/menu.png`. Las posiciones y regiones visibles se guardan en `assets/aresafio_menu/menu.json` dentro del pack generado. Se usa el mismo cálculo para dibujar el botón y para su zona de clic, también al cambiar resolución o escala de interfaz.
+Los originales están en `menu-assets/originales/menu.zip`; la referencia inicial está en `menu-assets/referencia/menu.png`. Las posiciones y regiones visibles se guardan en `assets/aresafio_menu/menu.json` dentro del pack generado. El dibujo y las zonas de clic comparten el mismo cálculo, también al cambiar resolución o escala de interfaz.
 
-Para reconstruir la beta a partir de esos originales, instala Python 3, Pillow y FFmpeg y ejecuta desde la raíz:
+Para reconstruir el pack a partir de los originales, instala Python 3, Pillow y FFmpeg y ejecuta desde la raíz:
 
 ```bash
 python3 tools/build_menu_pack.py
@@ -51,26 +46,21 @@ python3 tools/build_menu_pack.py --check
 Desde la raíz, con Java 21 y Gradle 8.12:
 
 ```bash
-gradle build
+gradle build :menu-client:betaDistribution
 ```
 
-Esto compila servidor y cliente y ejecuta `:menu-client:verifyMenuLayout`, que comprueba cuatro acciones y zonas de clic en siete resoluciones/escalas. No requiere JUnit ni dependencias nuevas. GitHub Actions conserva el artefacto de servidor y publica por separado el JAR de cliente y el pack beta.
+Esto compila servidor y cliente, ejecuta `:menu-client:verifyMenuLayout` y genera `build/distributions/ARESAFIO_MenuBeta3_1.21.1.zip`. La comprobación de geometría valida las cuatro acciones y las zonas de clic en siete resoluciones/escalas. No requiere JUnit ni dependencias nuevas. GitHub Actions conserva el artefacto de servidor y publica por separado el JAR de cliente y el pack beta.
 
-Para obtener un ZIP instalable con las carpetas `mods/` y `resourcepacks/`, ejecuta `gradle :menu-client:betaDistribution`. El resultado está en `build/distributions/ARESAFIO_MenuBeta2_1.21.1.zip`.
+## Verificación de beta 3
 
-La prueba de geometría y la validación del pack no sustituyen la comprobación en Minecraft: revisar inicio, multijugador, mundos, opciones/subpantallas, pausa, carga de packs, escalas de interfaz, navegación con teclado, música y vuelta al juego. También hay que comprobar en un servidor real que chat y TAB siguen funcionando.
+`gradle build :menu-client:betaDistribution` completado correctamente. La geometría actualizada pasó las comprobaciones en siete resoluciones/escalas: tamaño del logo conservado y botones centrados debajo. El pack pasó CRC, SHA-1, JSON, audio, 360 JPEG baseline y póster de 1920×1080, coincidencia de los PNG originales y conservación de todos los recursos V1. Se comprobó también que la distribución contiene el JAR beta 3 y el pack correctos, sin recursos que sustituyan globalmente la interfaz vanilla.
 
-## Verificación de beta 2
+Prueba en Minecraft Fabric 1.21.1 real sobre pantalla virtual Xvfb/Mesa: inicio a 1920×1080, 1280×720 y 1919×904, clics, vídeo decodificado a 1920×1080, transparencia y mipmaps. Las capturas muestran PE STUDIOS completo en la esquina inferior izquierda, el logo del mismo tamaño desplazado a la izquierda y los botones reducidos y centrados. Opciones, Gráficos, Multijugador, selección de mundos y pausa dentro de un mundo temporal conservan el aspecto vanilla y no reproducen la pista personalizada. Volver al inicio recupera el tema y su música. Desactivar/reactivar el pack recupera correctamente los menús vanilla/personalizado. Diez capturas y el resultado están en `menu-client/build/beta3-validation/`, como salidas locales fuera del JAR.
 
-`gradle build :menu-client:betaDistribution` completado correctamente. La prueba automatizada confirma que el logo y los botones conservan exactamente la geometría aprobada, además de comprobar siete resoluciones/escalas. El pack pasó las comprobaciones de CRC, SHA-1, JSON, 360 fotogramas, audio y coincidencia de todos los PNG originales y recursos V1.
+Los resultados históricos siguientes corresponden a beta 2 y no certifican el parche beta 3.
 
-Prueba realizada con un cliente real de Minecraft Java 1.21.1 en pantalla virtual Xvfb/Mesa: vídeo decodificado a 1920×1024 y comprobación de filtros trilineales de OpenGL y mipmaps en el logo y los cuatro botones. Se capturó el menú a 1919×904, 1920×1080 y 1280×720, se comprobó el clic de Opciones y se desactivó/reactivó el pack. La inspección de las seis capturas muestra el logo sin las manchas negras y los textos con bordes limpios. Las capturas y el análisis de alfa están en `menu-client/build/quality-validation/` como salidas locales, fuera del JAR. No se ha probado un servidor remoto ni escuchado la música en un dispositivo físico. Los resultados históricos de beta 1 que aparecen debajo corresponden únicamente a esa revisión.
+## Histórico: verificación de beta 2
 
-## Histórico: verificación de beta 1
+La beta 2 compiló con `gradle build :menu-client:betaDistribution` y pasó las comprobaciones de CRC, SHA-1, JSON, 360 fotogramas, audio y coincidencia de los PNG originales y recursos V1. Se probó en Minecraft Java 1.21.1 sobre Xvfb/Mesa: transparencia, mipmaps, vídeo a 1920×1024, tres resoluciones, clics en Opciones y recarga del pack. Las salidas locales de esa revisión están en `menu-client/build/quality-validation/`, fuera del JAR.
 
-- `gradle build :menu-client:betaDistribution`: compilación y distribución correctas.
-- Pack: CRC, SHA-1, JSON, 360 fotogramas y audio presentes; los PNG suministrados y todos los recursos de chat/TAB del pack V1 permanecen idénticos.
-- Cliente real de desarrollo Fabric 1.21.1 en pantalla virtual: inicio, vídeo, reproducción de música mediante OpenAL, clics en Opciones, Multijugador y Jugar, creación de un mundo temporal, pausa dentro del mundo y regreso al juego sin tema ni música de menú. Cambio de ventana de 1919×904 a 1280×720 con clics correctos. Desactivar/reactivar el pack recupera respectivamente el menú vanilla y el personalizado. Nueve capturas en `menu-client/build/validation/` (salidas locales, no incluidas en el JAR).
-- Regresión del servidor: carga del mixin y formato/fuentes del chat comprobados de nuevo bajo Fabric. Los archivos Java/JSON del servidor, su pack V1 y su SHA-1 no se modificaron.
-
-Pendiente de prueba manual: escucha de la música en un dispositivo físico, navegación completa con teclado, todas las subpantallas de opciones y conexión con cuenta autenticada a un servidor remoto para comprobar allí chat firmado y TAB. La prueba de audio utilizó un dispositivo OpenAL virtual y no certifica cómo se escucha la mezcla.
+No se ha comprobado el parche beta 3 en un servidor remoto ni se ha escuchado la música en un dispositivo físico. Las pruebas históricas de audio utilizaron un dispositivo OpenAL virtual.

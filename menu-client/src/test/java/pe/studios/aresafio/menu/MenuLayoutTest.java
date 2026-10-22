@@ -33,8 +33,14 @@ public final class MenuLayoutTest {
                 previousBottom = box.y() + box.height();
             }
         }
-        var exact = ReferenceLayout.fit(1919, 904, definition);
+        var exact = ReferenceLayout.fit(1920, 1080, definition);
         check(exact.scale() == 1 && exact.offsetX() == 0 && exact.offsetY() == 0, "Referencia desplazada");
+        check(definition.logo().width() == 800 && definition.logo().height() == 530, "Tamaño del logo alterado");
+        double center = definition.logo().x() + definition.logo().width() / 2;
+        for (var button : definition.buttons()) {
+            check(button.sprite().x() + button.sprite().width() / 2 == center, "Botón descentrado respecto al logo");
+            check(button.sprite().y() > definition.logo().y() + definition.logo().height(), "Botón encima del logo");
+        }
         var actions = definition.buttons().stream().map(MenuDefinition.MenuButton::action).toList();
         check(actions.equals(java.util.List.of("singleplayer", "multiplayer", "options", "quit")), "Acciones alteradas");
         System.out.println("PASS: cuatro acciones; coordenadas y clics válidos en siete resoluciones/escalas");
