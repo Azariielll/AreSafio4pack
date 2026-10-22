@@ -14,6 +14,14 @@ public final class MenuLayoutTest {
                                             StandardCharsets.UTF_8), MenuDefinition.class);
         }
         definition.validate();
+        try (var in = MenuLayoutTest.class.getResourceAsStream("/menu-layout-approved.json")) {
+            if (in == null) throw new AssertionError("Falta la referencia de posiciones aprobadas");
+            var approved = new Gson().fromJson(new String(in.readAllBytes(), StandardCharsets.UTF_8), MenuDefinition.class);
+            check(definition.buttons().equals(approved.buttons()), "Se han movido o alterado los botones aprobados");
+            check(definition.logo().equals(approved.logo()), "Se ha movido o deformado el logo");
+            check(definition.referenceWidth() == approved.referenceWidth()
+                && definition.referenceHeight() == approved.referenceHeight(), "Referencia de pantalla alterada");
+        }
         int[][] sizes = {{1919,904}, {1920,1080}, {2560,1080}, {480,270}, {320,240}, {854,480}, {640,480}};
         for (int[] size : sizes) {
             var layout = ReferenceLayout.fit(size[0], size[1], definition);

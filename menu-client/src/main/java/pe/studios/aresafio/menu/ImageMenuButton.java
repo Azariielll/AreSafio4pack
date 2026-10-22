@@ -3,7 +3,6 @@ package pe.studios.aresafio.menu;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 public final class ImageMenuButton extends ButtonWidget {
     private final MenuDefinition.Sprite sprite;
@@ -21,11 +20,7 @@ public final class ImageMenuButton extends ButtonWidget {
         int w = Math.max(1, (int) Math.round(sprite.sourceWidth() * ratio));
         int h = Math.max(1, (int) Math.round(sprite.sourceHeight() * ratio));
         int x = getX() + (width - w) / 2, y = getY() + (height - h) / 2;
-        context.setShaderColor(1f, 1f, 1f, active ? 1f : 0.35f);
-        context.drawTexture(Identifier.of(sprite.texture()), x, y, w, h,
-                            (float) sprite.u(), (float) sprite.v(), sprite.sourceWidth(), sprite.sourceHeight(),
-                            sprite.textureWidth(), sprite.textureHeight());
-        context.setShaderColor(1f, 1f, 1f, 1f);
+        MenuSprites.draw(context, sprite, x, y, w, h, active ? 1f : 0.35f);
         if (isSelected() && active) context.fill(x, getY() + height - 1, x + w, getY() + height, 0xCCFFFFFF);
     }
 }

@@ -68,6 +68,10 @@ def build():
         backgrounds = textures / "background"
         backgrounds.mkdir(parents=True)
         (assets / "sounds/music").mkdir(parents=True)
+        video_info = json.loads(subprocess.check_output([
+            "ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
+            "-of", "json", str(source / "Planeta_vivo_loop_12s.mp4")]))["streams"][0]
+        video_width, video_height = video_info["width"], video_info["height"]
         shutil.copyfile(ROOT / "recursos-originales/logo_original.png", textures / "logo.png")
         buttons = []
         labels = ["Jugar", "Multijugador", "Opciones", "Salir"]
@@ -82,14 +86,16 @@ def build():
                 target, f"aresafio_menu:textures/menu/{action}.png",
                 504-width/2, 540+i*80, width, 50)))
         subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i",
-                        str(source / "Planeta_vivo_loop_12s.mp4"), "-an", "-vf", "scale=1280:682,fps=30",
-                        "-q:v", "4", "-start_number", "0", str(backgrounds / "%03d.jpg")], check=True)
+                        str(source / "Planeta_vivo_loop_12s.mp4"), "-an", "-vf", "fps=30",
+                        "-q:v", "4", "-pix_fmt", "yuvj444p", "-start_number", "0",
+                        str(backgrounds / "%03d.jpg")], check=True)
         frames = len(list(backgrounds.glob("*.jpg")))
         if frames != 360:
             raise ValueError(f"Se esperaban 360 fotogramas, se obtuvieron {frames}")
         subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i",
-                        str(source / "Planeta_vivo_loop_12s.mp4"), "-frames:v", "1", "-vf", "scale=1280:682",
+                        str(source / "Planeta_vivo_loop_12s.mp4"), "-frames:v", "1",
                         str(textures / "poster.png")], check=True)
+        dump(textures / "poster.png.mcmeta", {"texture": {"blur": True, "clamp": True}})
         subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i",
                         str(source / "MUSICA_SOLO_MENUS.mp3"), "-vn", "-c:a", "libvorbis", "-q:a", "5",
                         str(assets / "sounds/music/menu.ogg")], check=True)
@@ -102,14 +108,15 @@ def build():
                                     sourceHeight=logo_height, x=104, y=0, width=800, height=530), buttons=buttons,
                           video=dict(prefix="aresafio_menu:textures/menu/background/",
                                      poster="aresafio_menu:textures/menu/poster.png", frames=frames,
-                                     fps=30, width=1280, height=682))
+                                     fps=30, width=video_width, height=video_height))
         dump(assets / "menu.json", definition)
         dump(assets / "sounds.json", {"menu_music": {"sounds": [
             {"name": "aresafio_menu:music/menu", "stream": True}]}})
         dump(pack / "pack.mcmeta", {"pack": {"pack_format": 34,
-             "description": "ARESAFIO 4 — Menús beta + chat y TAB originales | 1.21.1"}})
+             "description": "ARESAFIO 4 — Menús beta 2 | Transparencias y vídeo nativo | 1.21.1"}})
         (pack / "LEEME_MENU_BETA.txt").write_text(
-            "Activar localmente y usar aresafio-menu-client-1.0.0-beta.1.jar en el cliente Fabric 1.21.1.\n"
+            "Activar localmente y usar aresafio-menu-client-1.0.0-beta.2.jar en el cliente Fabric 1.21.1.\n"
+            "Retira el JAR beta.1 antes de instalar beta.2; conserva solo una versión del módulo.\n"
             "El servidor sigue usando el mod y pack V1; no necesita este módulo de menús.\n"
             "Posiciones editables en assets/aresafio_menu/menu.json.\n", encoding="utf-8")
         temporary_output = output.with_suffix(".zip.tmp")
@@ -119,6 +126,8 @@ def build():
                     info = zipfile.ZipInfo(path.relative_to(pack).as_posix(), (2026, 1, 1, 0, 0, 0))
                     info.compress_type = zipfile.ZIP_DEFLATED
                     archive.writestr(info, path.read_bytes())
+        if temporary_output.stat().st_size >= 100 * 1024 * 1024:
+            raise ValueError("El pack supera el límite por archivo de GitHub (100 MiB)")
         temporary_output.replace(output)
     sha1 = hashlib.sha1(output.read_bytes()).hexdigest()
     (ROOT / "RESOURCE_PACK_MENU_BETA_SHA1.txt").write_text(sha1 + "\n", encoding="ascii")
@@ -145,6 +154,7 @@ def validate():
         definition = json.loads(archive.read("assets/aresafio_menu/menu.json"))
         assert len(definition["buttons"]) == 4
         assert definition["video"]["frames"] == 360
+        assert (definition["video"]["width"], definition["video"]["height"]) == (1920, 1024)
         for i in range(360):
             assert f"assets/aresafio_menu/textures/menu/background/{i:03d}.jpg" in archive.namelist()
         assert "assets/aresafio_menu/sounds/music/menu.ogg" in archive.namelist()
