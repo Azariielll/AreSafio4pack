@@ -1,6 +1,6 @@
 {
-  "referenceWidth": 1919,
-  "referenceHeight": 904,
+  "referenceWidth": 1920,
+  "referenceHeight": 1080,
   "logo": {
     "texture": "aresafio_menu:textures/menu/logo.png",
     "textureWidth": 1254,
@@ -9,8 +9,8 @@
     "v": 0,
     "sourceWidth": 1254,
     "sourceHeight": 1254,
-    "x": 104,
-    "y": 0,
+    "x": 40,
+    "y": 88,
     "width": 800,
     "height": 530
   },
@@ -26,10 +26,10 @@
         "v": 232,
         "sourceWidth": 1900,
         "sourceHeight": 239,
-        "x": 429.0,
-        "y": 540,
-        "width": 150,
-        "height": 50
+        "x": 372.5,
+        "y": 630.5,
+        "width": 135,
+        "height": 45
       }
     },
     {
@@ -43,10 +43,10 @@
         "v": 275,
         "sourceWidth": 2019,
         "sourceHeight": 167,
-        "x": 369.0,
-        "y": 620,
-        "width": 270,
-        "height": 50
+        "x": 318.5,
+        "y": 710.5,
+        "width": 243,
+        "height": 45
       }
     },
     {
@@ -60,10 +60,10 @@
         "v": 256,
         "sourceWidth": 1883,
         "sourceHeight": 162,
-        "x": 391.5,
-        "y": 700,
-        "width": 225,
-        "height": 50
+        "x": 338.75,
+        "y": 790.5,
+        "width": 202.5,
+        "height": 45
       }
     },
     {
@@ -77,10 +77,10 @@
         "v": 219,
         "sourceWidth": 1849,
         "sourceHeight": 250,
-        "x": 436.5,
-        "y": 780,
-        "width": 135,
-        "height": 50
+        "x": 379.25,
+        "y": 870.5,
+        "width": 121.5,
+        "height": 45
       }
     }
   ]

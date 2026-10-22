@@ -2,13 +2,6 @@ package pe.studios.aresafio.menu;
 
 import com.google.gson.Gson;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.GameMenuScreen;
-import net.minecraft.client.gui.screen.option.GameOptionsScreen;
-import net.minecraft.client.gui.screen.option.OptionsScreen;
-import net.minecraft.client.gui.screen.pack.PackScreen;
-import net.minecraft.client.gui.screen.StatsScreen;
-import net.minecraft.client.gui.screen.advancement.AdvancementsScreen;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -49,13 +42,7 @@ public final class MenuTheme {
     }
 
     public static boolean themed() {
-        var client = MinecraftClient.getInstance();
-        Screen screen = client.currentScreen;
-        if (definition == null || screen == null) return false;
-        // Las interfaces de juego (chat, inventarios, HUD, libros...) siguen intactas.
-        return client.world == null || screen instanceof GameMenuScreen
-            || screen instanceof GameOptionsScreen || screen instanceof OptionsScreen
-            || screen instanceof PackScreen || screen instanceof StatsScreen
-            || screen instanceof AdvancementsScreen;
+        return definition != null
+            && MinecraftClient.getInstance().currentScreen instanceof AresafioTitleScreen;
     }
 }
