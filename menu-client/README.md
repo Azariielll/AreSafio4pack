@@ -4,6 +4,13 @@ Esta ampliación es un módulo **de cliente** separado y personaliza únicamente
 
 ## Instalar o actualizar a beta 3
 
+Descargas directas de esta beta desde GitHub, sin enlaces al entorno de desarrollo:
+
+- [JAR beta 3 del cliente](https://github.com/Azariielll/AreSafio4pack/raw/refs/heads/menu-beta3-parche/descargas/beta3/aresafio-menu-client-1.0.0-beta.3.jar) → `mods/` de tu instancia.
+- [Resource Pack beta 3](https://github.com/Azariielll/AreSafio4pack/raw/refs/heads/menu-beta3-parche/ARESAFIO_GUI_MenuBeta_ResourcePack.zip) → `resourcepacks/` de tu instancia, sin descomprimir.
+
+Si el repositorio requiere acceso, abre los enlaces con tu sesión de GitHub. El JAR publicado es una copia exacta del artefacto compilado y verificado de beta 3.
+
 1. Usa Minecraft **Java 1.21.1**, Java 21 y Fabric Loader 0.16.14 o compatible.
 2. Instala Fabric API para 1.21.1 en el **cliente**.
 3. Cierra Minecraft. Retira de `mods/` del cliente tanto `aresafio-menu-client-1.0.0-beta.1.jar` como `aresafio-menu-client-1.0.0-beta.2.jar`, si están presentes. Copia allí `menu-client/build/libs/aresafio-menu-client-1.0.0-beta.3.jar`. Conserva una sola versión del módulo. Este JAR no se instala en el servidor.
